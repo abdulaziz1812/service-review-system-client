@@ -1,48 +1,44 @@
-
-import {
-    createBrowserRouter,
-    
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import MyReviews from "../pages/MyReviews";
+import AddService from "../pages/AddService";
+import Services from "../pages/Services";
+import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import AddService from "./pages/AddService";
-import MyReviews from "./pages/MyReviews";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <h2>no page</h2>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
       },
       {
-        path: '/services',
+        path: "/services",
         element: <Services></Services>,
       },
       {
-        path: '/add-service',
+        path: "/add-service",
         element: <AddService></AddService>,
       },
       {
-        path: '/my-reviews',
+        path: "/my-reviews",
         element: <MyReviews></MyReviews>,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login></Login>,
       },
       {
-        path: '/register',
+        path: "/register",
         element: <Register></Register>,
       },
-    ]
+    ],
   },
 ]);
 

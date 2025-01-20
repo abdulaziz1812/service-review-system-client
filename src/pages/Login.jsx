@@ -1,16 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const Register = () => {
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
-  };
-
-  return (
-    <div>
+const Login = () => {
+    return (
+        <div>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -76,15 +68,25 @@ const Register = () => {
                   </a>
                 </label>
               </div>
+              {error.password && (
+                <label className="label text-xs text-red-500">
+                  {error.password}
+                </label>
+              )}
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>
+              {error.reg && (
+                <label className="label text-sm text-red-500">
+                  {error.reg}
+                </label>
+              )}
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default Register;
+export default Login;

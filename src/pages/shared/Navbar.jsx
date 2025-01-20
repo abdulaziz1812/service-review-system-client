@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from"../../../assets/Icon.png"
+import logo from"../../assets/Icon.png"
+import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-    // const { user, logOut } = useContext(AuthContext);
+    const { user} = useContext(AuthContext);
 
   const link = (
     <>
@@ -66,20 +67,20 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        
-          <div className="flex items-center justify-center gap-2">
+        {user && user?.email ? (
+            <div className="flex items-center justify-center gap-2">
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
                   className="btn btn-ghost btn-circle avatar tooltip tooltip-left"
-                
+                  data-tip={user?.displayName || "Profile"}
                 >
                   <div className=" rounded-full">
                     <img
                       alt="profile"
                       src={
-                        
+                        user?.photoURL ||
                         "https://img.icons8.com/?size=48&id=O9K5DaypaVKw&format=gif"
                       }
                     />
@@ -93,6 +94,7 @@ const Navbar = () => {
               </button>
             </div>
 
+          ) : (
             <div className="flex items-center gap-2">
               <Link to="/login">
                 <button className="btn btn-sm ">
@@ -106,6 +108,10 @@ const Navbar = () => {
                 </button>
               </Link>
             </div>
+          )}
+         
+
+            
         </div>
       </div>
     </div>
