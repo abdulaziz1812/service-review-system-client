@@ -4,9 +4,19 @@ import logo from"../../assets/Icon.png"
 import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-    const { user} = useContext(AuthContext);
+    const { user, logout} = useContext(AuthContext);
 
   const link = (
+    <>
+      <li>
+        <NavLink to='/'>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to='/services'>Services</NavLink>
+      </li>  
+    </>
+  );
+  const authLink = (
     <>
       <li>
         <NavLink to='/'>Home</NavLink>
@@ -20,13 +30,14 @@ const Navbar = () => {
       <li>
         <NavLink to='/my-reviews'>My Reviews</NavLink>
       </li>
-
-     
+      <li>
+        <NavLink to='/my-services'>My Services</NavLink>
+      </li>    
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="max-w-screen-xl mx-auto">
+      <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -50,7 +61,9 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               
             >
-                {link}
+                {
+                  user && user?.email ? authLink : link
+                }
             </ul>
           </div>
           <img 
@@ -63,7 +76,9 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-1">
             
-                 {link}
+          {
+                  user && user?.email ? authLink : link
+                }
           </ul>
         </div>
         <div className="navbar-end">
@@ -88,7 +103,7 @@ const Navbar = () => {
                 </div>
               </div>
               <button 
-            //   onClick={logOut}
+              onClick={logout}
               className="btn btn-sm ">
                 Log Out
               </button>

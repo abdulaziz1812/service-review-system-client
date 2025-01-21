@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Login = () => {
-    return (
-        <div>
+  const { login, setUser } = useContext(AuthContext);
+  const [error, setError] = useState({});
+  const navigate = useNavigate();
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    setError({});
+    const formData = new FormData(e.target);
+
+    const initialData = Object.fromEntries(formData.entries());
+    console.log(initialData);
+
+    const { email, password } = initialData;
+
+    login(email, password)
+      .then((result) => {
+        console.log(result);
+        const user = result.user;
+        setUser(user);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((err) => {
+        setError({ ...error, login: err.code });
+      });
+
+    setError({});
+  };
+
+  return (
+    <div>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Register now!</h1>
+            <h1 className="text-5xl font-bold">Login now!</h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
@@ -15,18 +45,6 @@ const Login = () => {
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body" onSubmit={handelSubmit}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="input input-bordered"
-                  name="name"
-                  required
-                />
-              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -39,18 +57,7 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">PhotoURL</span>
-                </label>
-                <input
-                  type="url"
-                  placeholder="PhotoURL"
-                  className="input input-bordered"
-                  name="photo"
-                  required
-                />
-              </div>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -74,19 +81,15 @@ const Login = () => {
                 </label>
               )}
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary">Login</button>
               </div>
-              {error.reg && (
-                <label className="label text-sm text-red-500">
-                  {error.reg}
-                </label>
-              )}
+              {error.login && <p className="text-red-500">{error.login}</p>}
             </form>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;
