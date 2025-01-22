@@ -6,7 +6,7 @@ import Footer from "../pages/shared/Footer";
 const MainLayout = () => {
     return (
         <div >
-            <div className="bg-teal-400"> 
+            <div className="bg-teal-400/85 sticky backdrop-blur top-0 z-10 "> 
             <Navbar  ></Navbar>
             </div>
             <Outlet></Outlet>

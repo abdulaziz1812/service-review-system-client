@@ -1,6 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import SocialLogin from "./shared/SocialLogin";
+import Lottie from "lottie-react";
+import loginLottieData from"../assets/lottie/login.json"
 
 const Login = () => {
   const { login, setUser } = useContext(AuthContext);
@@ -34,17 +37,14 @@ const Login = () => {
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
+        <div>
+            <h1 className="text-5xl font-bold text-center py-8">Login now!</h1>
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+          <div>
+            <Lottie animationData={loginLottieData}></Lottie>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body" onSubmit={handelSubmit}>
+            <form className="card-body pb-0" onSubmit={handelSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -81,11 +81,16 @@ const Login = () => {
                 </label>
               )}
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary text-white">Login</button>
               </div>
               {error.login && <p className="text-red-500">{error.login}</p>}
             </form>
+            <div className="px-8 pb-8">
+              <div className="divider">OR</div>
+              <SocialLogin></SocialLogin>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

@@ -2,17 +2,20 @@ import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import SocialLogin from "./shared/SocialLogin";
+import Lottie from "lottie-react";
+import regLottieData from "../assets/lottie/register.json";
 
 const Register = () => {
-  const { createUser, setUser, updateUserProfile, } = useContext(AuthContext);
+  const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState({});
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const passwordValidation = (password) => {
     const upperCase = /[A-Z]/.test(password);
     const lowerCase = /[a-z]/.test(password);
     const length = password.length >= 6;
-  
+
     if (!upperCase) {
       return "Password must include an uppercase letter.";
     }
@@ -24,7 +27,6 @@ const Register = () => {
     }
     return null;
   };
-  
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +67,7 @@ const Register = () => {
           .catch((err) => {});
       })
       .catch((err) => {
-        setError({  reg: err.code });
+        setError({ reg: err.code });
       });
 
     setError({});
@@ -74,17 +76,16 @@ const Register = () => {
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
+        <div>
+            <h1 className="text-5xl font-bold text-center py-8 ">Register now!</h1>
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+          <div >
+            <div className="w-96 ">
+              <Lottie animationData={regLottieData}></Lottie>
+            </div>
           </div>
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body" onSubmit={handelSubmit}>
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl ">
+            <form className="card-body pb-0" onSubmit={handelSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -144,7 +145,7 @@ const Register = () => {
                 </label>
               )}
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary text-white">Register</button>
               </div>
               {error.reg && (
                 <label className="label text-sm text-red-500">
@@ -152,7 +153,12 @@ const Register = () => {
                 </label>
               )}
             </form>
+            <div className="px-8 pb-8">
+              <div className="divider">OR</div>
+              <SocialLogin></SocialLogin>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

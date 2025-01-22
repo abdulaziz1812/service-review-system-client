@@ -4,9 +4,9 @@ import Login from "../pages/Login";
 import MyReviews from "../pages/MyReviews";
 import AddService from "../pages/AddService";
 import Services from "../pages/Services";
-import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
 import MyServices from "../pages/MyServices";
+import Home from "../pages/home/Home";
 
 
 const router = createBrowserRouter([
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/services-featured"),
       },
       {
         path: "/services",

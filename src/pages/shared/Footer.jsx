@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../../assets/Icon.png";
 import { FaFacebook, FaGithub, FaYoutube } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
