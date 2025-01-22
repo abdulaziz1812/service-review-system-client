@@ -30,7 +30,7 @@ const Partners = () => {
             className="bg-white shadow-lg p-6 rounded-lg text-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: .5, delay: index * .5 }}
+            transition={{ duration: 0.5, delay: index * 0.4 }}
           >
             <img
               src={partner.logo}

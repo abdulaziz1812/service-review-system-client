@@ -12,15 +12,9 @@ const ServiceCard = ({ service }) => {
 
   return (
     <motion.div 
-    initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  animate={{ x: [-100, 0] }}
-    
-        transition={{
-      duration: 2,
-      delay: .5,
-      ease: "easeOut",
-  }}
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 1, delay: 0.3 }}
     >
       <motion.div 
        whileHover={{ scale: 1.1 }}

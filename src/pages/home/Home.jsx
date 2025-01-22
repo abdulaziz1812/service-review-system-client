@@ -1,6 +1,7 @@
-import Partners from '../Partners';
+import Partners from './Partners';
 import Banner from './Banner';
 import Featured from './Featured';
+import Testimonials from './Testimonials';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner></Banner>
             <Featured></Featured>
             <Partners></Partners>
+            <Testimonials></Testimonials>
         </div>
     );
 };
