@@ -1,12 +1,30 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
 
   console.log(service);
+
+  const handelDetails = (id) => {
+    navigate(`/service-details/${id}`);
+  };
+
   return (
-    <div className="">
-      <div className=" w-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg">
+    <motion.div 
+    initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  animate={{ x: [-100, 0] }}
+    
+        transition={{
+      duration: 2,
+      delay: .5,
+      ease: "easeOut",
+  }}
+    >
+      <motion.div 
+       whileHover={{ scale: 1.1 }}
+      className=" w-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg">
         <div className="flex flex-col flex-grow justify-between h-60">
           <figure>
             <img
@@ -20,15 +38,15 @@ const ServiceCard = ({ service }) => {
           <p className="text-lg font-bold">Price: ${service.price}</p>
           <div className="card-actions justify-end">
             <button
-              className="btn btn-primary"
-              onClick={() => navigate(`/service-details/${service._id}`)}
+              className="btn btn-primary text-white"
+              onClick={() => handelDetails(service._id)}
             >
               See Details
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
