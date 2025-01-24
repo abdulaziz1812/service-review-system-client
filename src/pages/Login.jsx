@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthContext";
 import SocialLogin from "./shared/SocialLogin";
 import Lottie from "lottie-react";
 import loginLottieData from"../assets/lottie/login.json"
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { login, setUser } = useContext(AuthContext);
@@ -24,6 +25,13 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         const user = result.user;
+        if (user.uid) {
+          Swal.fire({
+            title: "Successfully Logged in",
+            icon: "success",
+            draggable: true,
+          });
+        }
         setUser(user);
         navigate(location?.state ? location.state : "/");
       })
