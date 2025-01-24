@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import SocialLogin from "./shared/SocialLogin";
 import Lottie from "lottie-react";
@@ -10,8 +10,12 @@ const Login = () => {
   const { login, setUser } = useContext(AuthContext);
   const [error, setError] = useState({});
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const from = location.state?.pathname || "/";
+  console.log(location);
+  console.log(from);
   const handelSubmit = (e) => {
+    
     e.preventDefault();
     setError({});
     const formData = new FormData(e.target);
@@ -33,7 +37,8 @@ const Login = () => {
           });
         }
         setUser(user);
-        navigate(location?.state ? location.state : "/");
+
+        navigate(from);
       })
       .catch((err) => {
         setError({ ...error, login: err.code });

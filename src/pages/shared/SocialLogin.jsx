@@ -8,13 +8,14 @@ const SocialLogin = () => {
 const{googleLogin, setUser} = useContext(AuthContext)
 const navigate = useNavigate();
 const  [error, setError] =useState();
+const from = location.state?.pathname || "/";
 
     const handelGoogleLogin = () => {
         googleLogin()
           .then((result) => {
             const user = result.user;
             setUser(user);
-            navigate(location?.state ? location.state : "/");
+            navigate(from);
           })
           .catch((err) => {
             setError({ google: err.code });

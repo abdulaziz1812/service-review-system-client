@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import { Navigate, useLocation } from 'react-router-dom';
 import Lottie from 'lottie-react';
@@ -21,7 +21,7 @@ const PrivateRoute = ({children}) => {
         return children
     }
 
-    return <Navigate to="/login" state={location?.pathname}></Navigate>
+    return <Navigate state={location.pathname} to={"/login"}></Navigate>;
 };
 
 export default PrivateRoute;
