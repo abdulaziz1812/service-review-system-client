@@ -5,14 +5,13 @@ import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
-
 const MyServices = () => {
   const { user } = useAuth();
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState({});
   const [search, setSearch] = useState("");
 
-  const  axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   const handelSearch = (e) => {
     e.preventDefault();
@@ -28,13 +27,12 @@ const MyServices = () => {
   );
 
   useEffect(() => {
-   
-      axiosSecure.get(`/my-Services?email=${user.email}`)
-      .then(res=> setServices(res.data))
-    
-  }, [user.email , axiosSecure]);
+    axiosSecure
+      .get(`/my-Services?email=${user.email}`)
+      .then((res) => setServices(res.data));
+  }, [user.email, axiosSecure]);
 
-  console.log(services);
+  services;
 
   const date = (addedDate) => {
     const newDate = new Date(addedDate);
@@ -63,7 +61,7 @@ const MyServices = () => {
           const remainingServices = services.filter(
             (service) => service._id !== id
           );
-          console.log(remainingServices);
+          remainingServices;
           setServices(remainingServices);
         });
         Swal.fire({
@@ -128,7 +126,7 @@ const MyServices = () => {
   };
 
   return (
-    <div className="mx-auto w-8/12 mt-8">
+    <div className="mx-auto w-11/12 mt-8">
       <Helmet>
         <title>MyServices-ReviewRadar</title>
       </Helmet>
@@ -206,8 +204,8 @@ const MyServices = () => {
               ) : (
                 <tr>
                   <td className="col-span-full text-center text-xl text-gray-500">
-                  No Services found.
-                </td>
+                    No Services found.
+                  </td>
                 </tr>
               )}
             </tbody>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { motion } from "motion/react";
 
@@ -16,10 +16,11 @@ const Stat = () => {
 
   return (
     <motion.div
-    initial={{ opacity: 0, x: -50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: .5, delay: 0.2 }} 
-    className="flex justify-center items-center mx-auto w-fit p-8 bg-white rounded-xl shadow-xl mb-8">
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="flex justify-center items-center mx-auto w-fit p-8 bg-white rounded-xl shadow-xl mb-8"
+    >
       <div className="stats shadow">
         <div className="stat place-items-center">
           <div className="stat-title">Users</div>

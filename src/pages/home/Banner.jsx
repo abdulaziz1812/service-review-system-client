@@ -9,7 +9,8 @@ import { motion } from "motion/react";
 import banner01 from "../../assets/Banner/1.jpg";
 import banner02 from "../../assets/Banner/2.jpg";
 import banner03 from "../../assets/Banner/3.jpg";
-import banner04 from "../../assets/Banner/4.jpg";3
+import banner04 from "../../assets/Banner/4.jpg";
+3;
 const Banner = () => {
   return (
     <div className="max-w-screen-2xl rounded-lg mx-auto">
@@ -20,7 +21,7 @@ const Banner = () => {
           pagination={{ clickable: true }}
           autoplay={{ delay: 4000 }}
           loop
-          className="h-[550px] w-full"
+          className="h-[180px] md:h-[300px] lg:h-[400px] xl-[550px]w-full"
         >
           {/* Slide 1 */}
           <SwiperSlide>
@@ -36,7 +37,7 @@ const Banner = () => {
                 transition={{ duration: 2 }}
                 className="absolute inset-0 flex flex-col bg-black bg-opacity-60"
               >
-                <div className="p-32">
+                <div className="text-center pt-6 md:p-32">
                   <motion.h2
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -45,7 +46,7 @@ const Banner = () => {
                       delay: 0.5,
                       ease: [0, 1, 0.2, 1.01],
                     }}
-                    className="text-4xl font-bold mb-2 text-[#a0913e]"
+                    className="md:text-4xl font-bold mb-2 text-[#a0913e]"
                   >
                     Discover Top-Rated Services
                   </motion.h2>
@@ -57,7 +58,7 @@ const Banner = () => {
                       delay: 1,
                       ease: [0, 1, 0.2, 1.01],
                     }}
-                    className="text-xl text-white"
+                    className="text-xs md:text-xl text-white"
                   >
                     Your trusted platform for authentic reviews
                   </motion.p>
@@ -88,7 +89,7 @@ const Banner = () => {
                     delay: 0.5,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-4xl font-bold mb-2 text-[#a0913e] "
+                  className=" md:text-4xl font-bold mb-2 text-[#a0913e] "
                 >
                   Share Your Experience
                 </motion.h2>
@@ -100,7 +101,7 @@ const Banner = () => {
                     delay: 1,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-xl text-white"
+                  className="text-xs md:text-xl text-white"
                 >
                   Help others by providing insightful reviews
                 </motion.p>
@@ -121,7 +122,7 @@ const Banner = () => {
                 alt="Your Reviews Matter"
                 className="w-full h-full object-cover object-bottom"
               />
-              <div className="absolute inset-0 flex flex-col  bg-black bg-opacity-50 p-32">
+              <div className="absolute inset-0 flex flex-col  bg-black bg-opacity-50 p-6 md:p-32">
                 <motion.h2
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -130,7 +131,7 @@ const Banner = () => {
                     delay: 0.5,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-4xl font-bold mb-2 text-[#a0913e]"
+                  className="md:text-4xl font-bold mb-2 text-[#a0913e]"
                 >
                   Your Reviews Matter
                 </motion.h2>
@@ -143,7 +144,7 @@ const Banner = () => {
                     delay: 1,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-lg text-white"
+                  className="text-xs md:text-lg text-white"
                 >
                   Join a growing community of reviewers
                 </motion.p>
@@ -173,7 +174,7 @@ const Banner = () => {
                     delay: 0.5,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-4xl font-bold mb-2 text-[#a0913e]"
+                  className="md:text-4xl font-bold mb-2 text-[#a0913e]"
                 >
                   Explore Services Anywhere
                 </motion.h2>
@@ -185,7 +186,7 @@ const Banner = () => {
                     delay: 1,
                     ease: [0, 1, 0.2, 1.01],
                   }}
-                  className="text-lg"
+                  className="text-xs md:text-lg"
                 >
                   Your go-to platform for service reviews
                 </motion.p>

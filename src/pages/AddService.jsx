@@ -10,19 +10,19 @@ const AddService = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = user.email;
-    console.log(email);
+    email;
     const formData = new FormData(e.target);
 
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
+    initialData;
     const date = new Date().toISOString();
-    console.log(date);
+    date;
     const service = { ...initialData, email: email, addedDate: date };
 
     axios
       .post("http://localhost:5000/services", service)
       .then((result) => {
-        console.log(result);
+        result;
         if (result.data.insertedId) {
           Swal.fire({
             title: "New Services added successfully",
@@ -32,15 +32,15 @@ const AddService = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        error;
       });
-      
+
     e.target.reset();
   };
 
   return (
     <div className="mx-auto w-10/12 bg-white m-8 rounded-xl shadow-xl">
-    <Helmet>
+      <Helmet>
         <title>Add Service-ReviewRadar</title>
       </Helmet>
 

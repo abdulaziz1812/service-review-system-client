@@ -36,33 +36,32 @@ const Register = () => {
     const formData = new FormData(e.target);
 
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
+    initialData;
 
     const { name, email, photo, password } = initialData;
 
     const passwordError = passwordValidation(password);
-    console.log(passwordError);
+    passwordError;
     if (passwordError) {
       setError({ password: passwordError });
-      console.log(error);
+      error;
       return;
     }
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(result);
+        result;
         setUser(user);
         if (result.user.uid) {
-
           axios
-          .post("http://localhost:5000/user", user)
-          .then((result) => {
-            console.log(result);
-                      })
-          .catch((error) => {
-            console.log(error);
-          });
+            .post("http://localhost:5000/user", user)
+            .then((result) => {
+              result;
+            })
+            .catch((error) => {
+              error;
+            });
 
           Swal.fire({
             title: "Registration successful! ",
@@ -73,7 +72,7 @@ const Register = () => {
           navigate(location?.state ? location.state : "/");
           setError({});
         }
-        console.log(result);
+        result;
         updateUserProfile({ displayName: name, photoURL: photo })
           .then((res) => {})
           .catch((err) => {});

@@ -11,7 +11,7 @@ const MyReviews = () => {
   const [selectedReview, setSelectedReview] = useState({});
   const [rating, setRating] = useState(0);
 
-  console.log(selectedReview.rating);
+  selectedReview.rating;
   useEffect(() => {
     fetch(`http://localhost:5000/my-reviews?email=${user.email}`)
       .then((res) => res.json())
@@ -19,7 +19,7 @@ const MyReviews = () => {
       .catch((err) => console.error(err.message));
   }, [user.email]);
 
-  console.log(reviews);
+  reviews;
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -48,7 +48,7 @@ const MyReviews = () => {
   // Open Update Modal
   const openUpdateModal = (review) => {
     setSelectedReview(review);
-    setRating(review.rating)
+    setRating(review.rating);
 
     document.getElementById("my_modal_1").showModal();
   };
@@ -57,7 +57,7 @@ const MyReviews = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     const form = new FormData(e.target);
+    const form = new FormData(e.target);
 
     const updatedReview = {
       text: form.get("text"),
@@ -97,8 +97,8 @@ const MyReviews = () => {
   return (
     <div className="w-10/12 mx-auto mt-8">
       <Helmet>
-              <title>MyReviews-ReviewRadar</title>
-            </Helmet>
+        <title>MyReviews-ReviewRadar</title>
+      </Helmet>
       <h2 className="text-3xl font-bold m-6">My Reviews ({reviews.length})</h2>
       <div className="grid gap-6 p-6">
         {reviews.map((review) => (
@@ -130,7 +130,7 @@ const MyReviews = () => {
                   readOnly
                 />
               </div>
-              
+
               <div className="flex gap-2">
                 <button
                   onClick={() => openUpdateModal(review)}
@@ -146,8 +146,8 @@ const MyReviews = () => {
                 </button>
               </div>
               <p className="text-sm text-gray-400">
-                  Posted on {new Date(review.date).toLocaleDateString()}
-                </p>
+                Posted on {new Date(review.date).toLocaleDateString()}
+              </p>
             </div>
           </div>
         ))}

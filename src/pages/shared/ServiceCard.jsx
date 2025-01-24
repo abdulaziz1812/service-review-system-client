@@ -4,21 +4,22 @@ import { motion } from "motion/react";
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
 
-  console.log(service);
+  service;
 
   const handelDetails = (id) => {
     navigate(`/service-details/${id}`);
   };
 
   return (
-    <motion.div 
-    initial={{ opacity: 0, x: -50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: .5, delay: 0.2 }}
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <motion.div 
-       whileHover={{ scale: 1.1 }}
-      className=" w-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg">
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        className=" w-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg"
+      >
         <div className="flex flex-col flex-grow justify-between h-60">
           <figure>
             <img

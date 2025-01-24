@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +9,8 @@ const axiosInstance = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const {logout} = useAuth();
-  const navigate = useNavigate()
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance.interceptors.response.use(
@@ -19,13 +19,13 @@ const useAxiosSecure = () => {
       },
       (error) => {
         if (error.status === 401 || error.status === 403) {
-          console.log("Need to logout the user");
+          ("Need to logout the user");
           logout()
-          .then(()=>{
-            console.log('logged out user');
-            navigate('/login')
-          })
-          .catch(error => console.log(error));
+            .then(() => {
+              ("logged out user");
+              navigate("/login");
+            })
+            .catch((error) => error);
         }
 
         return Promise.reject(error);

@@ -11,14 +11,14 @@ import { Helmet } from "react-helmet-async";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
-  console.log(service);
+  service;
   const [rating, setRating] = useState(0);
   const [reviews, setReviews] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
-  console.log(user);
+  user;
 
   useEffect(() => {
     axios
@@ -34,8 +34,8 @@ const ServiceDetails = () => {
 
   const handleAddReview = (e) => {
     e.preventDefault();
-    console.log(user);
-    console.log(location);
+    user;
+    location;
     if (!user) {
       return navigate("/login", { state: { pathname } });
     }
@@ -55,7 +55,7 @@ const ServiceDetails = () => {
     axios
       .post("http://localhost:5000/review", newReview)
       .then((result) => {
-        console.log(result);
+        result;
         if (result.data.insertedId) {
           Swal.fire({
             title: "New Review added successfully",
@@ -65,7 +65,7 @@ const ServiceDetails = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        error;
       });
     e.target.reset();
     setReviews([...reviews, newReview]);

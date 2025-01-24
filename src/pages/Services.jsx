@@ -42,7 +42,7 @@ const Services = () => {
         <title>Services-ReviewRadar</title>
       </Helmet>
       ;
-      <div className="container mx-auto py-8 w-8/12">
+      <div className="container mx-auto py-8 w-10/12 xl:w-8/12">
         <h2 className="text-3xl font-bold text-center mb-6">All Services</h2>
 
         <div className="">
@@ -78,8 +78,7 @@ const Services = () => {
           </select>
         </div>
 
-      
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredService.length > 0 ? (
             filteredService.map((service) => (
               <ServiceCard service={service} key={service._id}></ServiceCard>

@@ -1,38 +1,38 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from"../../assets/Icon.png"
+import logo from "../../assets/Icon.png";
 import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-    const { user, logout} = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const link = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to='/services'>Services</NavLink>
-      </li>  
+        <NavLink to="/services">Services</NavLink>
+      </li>
     </>
   );
   const authLink = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to='/services'>Services</NavLink>
+        <NavLink to="/services">Services</NavLink>
       </li>
       <li>
-        <NavLink to='/add-service'>Add Service</NavLink>
+        <NavLink to="/add-service">Add Service</NavLink>
       </li>
       <li>
-        <NavLink to='/my-reviews'>My Reviews</NavLink>
+        <NavLink to="/my-reviews">My Reviews</NavLink>
       </li>
       <li>
-        <NavLink to='/my-services'>My Services</NavLink>
-      </li>    
+        <NavLink to="/my-services">My Services</NavLink>
+      </li>
     </>
   );
   return (
@@ -59,30 +59,20 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              
             >
-                {
-                  user && user?.email ? authLink : link
-                }
+              {user && user?.email ? authLink : link}
             </ul>
           </div>
-          <img 
-          src={logo} 
-          alt="logo"
-          className="w-12"
-          />
+          <img src={logo} alt="logo" className="w-12" />
           <a className="btn btn-ghost text-xl">Review Radar</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-1">
-            
-          {
-                  user && user?.email ? authLink : link
-                }
+            {user && user?.email ? authLink : link}
           </ul>
         </div>
         <div className="navbar-end">
-        {user && user?.email ? (
+          {user && user?.email ? (
             <div className="flex items-center justify-center gap-2">
               <div className="dropdown dropdown-end">
                 <div
@@ -102,31 +92,21 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <button 
-              onClick={logout}
-              className="btn btn-sm ">
+              <button onClick={logout} className="btn btn-sm ">
                 Log Out
               </button>
             </div>
-
           ) : (
             <div className="flex items-center gap-2">
               <Link to="/login">
-                <button className="btn btn-sm ">
-                  Login
-                </button>
+                <button className="btn btn-sm ">Login</button>
               </Link>
-              <div >or</div>
+              <div>or</div>
               <Link to="/register">
-                <button className="btn btn-sm ">
-                  Register
-                </button>
+                <button className="btn btn-sm ">Register</button>
               </Link>
             </div>
           )}
-         
-
-            
         </div>
       </div>
     </div>
