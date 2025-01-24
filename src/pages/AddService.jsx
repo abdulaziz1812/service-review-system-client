@@ -2,6 +2,7 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -33,11 +34,16 @@ const AddService = () => {
       .catch((error) => {
         console.log(error);
       });
+      
     e.target.reset();
   };
 
   return (
-    <div className="mx-auto w-10/12 bg-white m-8">
+    <div className="mx-auto w-10/12 bg-white m-8 rounded-xl shadow-xl">
+    <Helmet>
+        <title>Add Service-ReviewRadar</title>
+      </Helmet>
+
       <h1 className="text-3xl font-bold p-8 pb-0">Add a New Service</h1>
       <form onSubmit={handleSubmit} className="card-body">
         <div className="form-control">
@@ -142,7 +148,7 @@ const AddService = () => {
           ></textarea>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary text-white" type="submit">
             Add Service
           </button>
         </div>

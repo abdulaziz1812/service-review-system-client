@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import SocialLogin from "./shared/SocialLogin";
 import Lottie from "lottie-react";
 import loginLottieData from"../assets/lottie/login.json"
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { login, setUser } = useContext(AuthContext);
@@ -49,6 +50,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+                    <title>Login-ReviewRadar</title>
+                  </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div>
             <h1 className="text-5xl font-bold text-center py-8">Login now!</h1>
@@ -102,6 +106,12 @@ const Login = () => {
               <div className="divider">OR</div>
               <SocialLogin></SocialLogin>
             </div>
+            <p className="text-center font-semibold pb-9">
+          Don&apos;t have an account?{" "}
+          <Link className="text-red-500" to="/register">
+            Register
+          </Link>
+        </p>
           </div>
         </div>
         </div>

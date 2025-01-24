@@ -2,12 +2,26 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const MyServices = () => {
   const { user } = useAuth();
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState({});
- 
+  const [search, setSearch] = useState("");
+
+  const handelSearch = (e) => {
+    e.preventDefault();
+    const searchedInput = e.target.search.value;
+    setSearch(searchedInput);
+  };
+
+  const filteredService = services.filter(
+    (service) =>
+      service.serviceTitle.toLowerCase().includes(search.toLowerCase()) ||
+      service.category.toLowerCase().includes(search.toLowerCase()) ||
+      service.companyName.toLowerCase().includes(search.toLowerCase())
+  );
 
   useEffect(() => {
     fetch(`http://localhost:5000/my-Services?email=${user.email}`)
@@ -22,12 +36,12 @@ const MyServices = () => {
   const date = (addedDate) => {
     const newDate = new Date(addedDate);
     return newDate.toLocaleString("en-gb", {
-      day: "2-digit", 
-      year: "numeric", 
-      month: "short", 
+      day: "2-digit",
+      year: "numeric",
+      month: "short",
       hour: "2-digit",
-      minute: "2-digit", 
-      hour12: true, 
+      minute: "2-digit",
+      hour12: true,
     });
   };
 
@@ -47,7 +61,6 @@ const MyServices = () => {
             (service) => service._id !== id
           );
           console.log(remainingServices);
-
           setServices(remainingServices);
         });
         Swal.fire({
@@ -58,17 +71,17 @@ const MyServices = () => {
       }
     });
   };
-  
+
   const openUpdateModal = (service) => {
     setSelectedService(service);
-    
+
     document.getElementById("my_modal_1").showModal();
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = user.email;
-      const form = new FormData(e.target);
+    const form = new FormData(e.target);
 
     const updatedService = {
       serviceImage: form.get("serviceImage"),
@@ -79,10 +92,8 @@ const MyServices = () => {
       category: form.get("category"),
       price: parseFloat(form.get("price")),
       addedDate: new Date().toISOString(),
-      email: email, 
+      email: email,
     };
-
-
 
     fetch(`http://localhost:5000/services/${selectedService._id}`, {
       method: "PUT",
@@ -102,80 +113,104 @@ const MyServices = () => {
           setServices((prevServices) =>
             prevServices.map((service) =>
               service._id === selectedService._id
-          ? { ...service, ...updatedService }
-          : service
-        )
-      )
-        document.getElementById("my_modal_1").close();
-      }
+                ? { ...service, ...updatedService }
+                : service
+            )
+          );
+          document.getElementById("my_modal_1").close();
+        }
       });
-      
 
-  
     e.target.reset();
   };
 
   return (
-    <div>
-      <h2 className="text-3xl">My Services {services.length}</h2>
-      <div className="overflow-x-auto w-10/12 mx-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>SL No.</th>
-              <th>Company</th>
-              <th>Service Title</th>
-              <th>Added Date & time</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {services.map((service, index) => (
-              <tr key={service._id}>
-                <th>{index + 1}</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={service.serviceImage}
-                          alt={service.serviceTitle}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{service.companyName}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>{service.serviceTitle}</td>
-                <td>{date(service.addedDate)}</td>
-                <td>{service.price}</td>
-                <td>{service.category}</td>
-                <td>
-                  <button
-                    onClick={() => openUpdateModal(service)}
-                    className="btn btn-primary text-white btn-xs mx-1"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(service._id)}
-                    className="btn btn-error text-white btn-xs mx-1"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="mx-auto w-8/12 mt-8">
+      <Helmet>
+        <title>MyServices-ReviewRadar</title>
+      </Helmet>
+      <h2 className="text-3xl font-bold">My Services</h2>
+
+      <div className="">
+        <form onSubmit={handelSearch} className="py-4 ">
+          <label className="input input-bordered flex items-center gap-2 w-full focus:ring-2 focus:ring-blue-500 bg-white ">
+            <input
+              type="text"
+              placeholder="Search by Service Title or Company name or Category"
+              className="grow "
+              name="search"
+            />
+            <input type="submit" className="btn btn-sm btn-outline" />
+          </label>
+        </form>
       </div>
 
-      {/* Update Modal */}
+      <div className="bg-white p-2 shadow-xl rounded mb-8 ">
+        <div className="overflow-x-auto pb-8">
+          <table className="table table-zebra">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Company</th>
+                <th>Service Title</th>
+                <th>Added Date & time</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredService.length > 0 ? (
+                filteredService.map((service, index) => (
+                  <tr className="hover" key={service._id}>
+                    <th>{index + 1}</th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 w-12">
+                            <img
+                              src={service.serviceImage}
+                              alt={service.serviceTitle}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">{service.companyName}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{service.serviceTitle}</td>
+                    <td>{date(service.addedDate)}</td>
+                    <td>{service.price}</td>
+                    <td>{service.category}</td>
+                    <td>
+                      <button
+                        onClick={() => openUpdateModal(service)}
+                        className="btn btn-primary text-white btn-xs mx-1"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDelete(service._id)}
+                        className="btn btn-error text-white btn-xs mx-1"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <p className="col-span-full text-center text-xl text-gray-500">
+                  No Services found.
+                </p>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Modal */}
 
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
@@ -291,7 +326,7 @@ const MyServices = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary text-white" type="submit">
-              Update
+                Update
               </button>
             </div>
           </form>

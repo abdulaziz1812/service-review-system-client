@@ -29,6 +29,7 @@ const ServiceCard = ({ service }) => {
           </figure>
           <h3 className="font-bold">{service.serviceTitle}</h3>
           <p>{service.description}</p>
+          <p>{service.category}</p>
           <p className="text-lg font-bold">Price: ${service.price}</p>
           <div className="card-actions justify-end">
             <button
