@@ -80,8 +80,8 @@ const ServiceDetails = () => {
       className="container mx-auto p-8 w-10/12"
     >
       <Helmet>
-              <title>ServiceDetails-ReviewRadar</title>
-            </Helmet>
+        <title>ServiceDetails-ReviewRadar</title>
+      </Helmet>
       <div className="mb-8">
         <img
           src={service.serviceImage}

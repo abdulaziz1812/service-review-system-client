@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.init";
+import axios from "axios";
 
 // const googleProvider = new GoogleAuthProvider()
 
@@ -32,8 +33,25 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
-      setLoading(false);
+      console.log(currentUser?.email);
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data)
+            setLoading(false)
+          })
+      } else {
+        axios
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+
+          .then((res) => {
+            console.log("logout", res.data)
+              setLoading(false)
+            })
+      }
     });
 
     return () => {
@@ -51,13 +69,13 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const googleLogin = () =>{
-    setLoading(true)
+  const googleLogin = () => {
+    setLoading(true);
     const auth = getAuth();
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
 
-    return signInWithPopup(auth, googleProvider)
-  }
+    return signInWithPopup(auth, googleProvider);
+  };
 
   const authInfo = {
     user,

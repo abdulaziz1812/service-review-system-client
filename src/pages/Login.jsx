@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import loginLottieData from"../assets/lottie/login.json"
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Login = () => {
   const { login, setUser } = useContext(AuthContext);
@@ -38,7 +39,13 @@ const Login = () => {
           });
         }
         setUser(user);
-
+         
+        const users = {email: result.user.email}
+        console.log(user);
+        axios.post('http://localhost:5000/jwt', users ,{withCredentials: true})
+        .then(res=>{
+          console.log(res.data);
+        })  
         navigate(from);
       })
       .catch((err) => {

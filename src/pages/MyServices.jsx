@@ -3,12 +3,16 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+
 
 const MyServices = () => {
   const { user } = useAuth();
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState({});
   const [search, setSearch] = useState("");
+
+  const  axiosSecure = useAxiosSecure()
 
   const handelSearch = (e) => {
     e.preventDefault();
@@ -24,12 +28,11 @@ const MyServices = () => {
   );
 
   useEffect(() => {
-    fetch(`http://localhost:5000/my-Services?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data);
-      });
-  }, [user.email]);
+   
+      axiosSecure.get(`/my-Services?email=${user.email}`)
+      .then(res=> setServices(res.data))
+    
+  }, [user.email , axiosSecure]);
 
   console.log(services);
 
@@ -201,9 +204,11 @@ const MyServices = () => {
                   </tr>
                 ))
               ) : (
-                <p className="col-span-full text-center text-xl text-gray-500">
+                <tr>
+                  <td className="col-span-full text-center text-xl text-gray-500">
                   No Services found.
-                </p>
+                </td>
+                </tr>
               )}
             </tbody>
           </table>

@@ -78,34 +78,11 @@ const Services = () => {
           </select>
         </div>
 
-        {/* <div className="form-control">
-          <label className="label">
-            <span className="label-text">Category:</span>
-          </label>
-          <select
-            className="select select-bordered w-full max-w-xs"
-            name="category"
-            required
-          >
-            <option value="" disabled>
-              Select a category
-            </option>
-            <option value="Technology">Technology</option>
-            <option value="Education">Education</option>
-            <option value="Health">Health</option>
-            <option value="Finance">Finance</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Photography">Photography</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Automotive">Automotive</option>
-          </select>
-        </div> */}
-
+      
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {filteredService.length > 0 ? (
             filteredService.map((service) => (
-              <ServiceCard service={service} key={services._id}></ServiceCard>
+              <ServiceCard service={service} key={service._id}></ServiceCard>
             ))
           ) : (
             <p className="col-span-full text-center text-xl text-gray-500">

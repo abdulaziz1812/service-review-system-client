@@ -122,14 +122,14 @@ const MyReviews = () => {
                 <strong>Review: </strong>
                 {review.text}
               </h3>
-              <p className="text-gray-600 flex">
+              <div className="text-gray-600 flex">
                 <strong>Rating:</strong>
                 <Rating
                   style={{ maxWidth: 100 }}
                   value={review.rating}
                   readOnly
                 />
-              </p>
+              </div>
               
               <div className="flex gap-2">
                 <button
