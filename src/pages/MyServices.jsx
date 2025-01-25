@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 
-
 const MyServices = () => {
   const { user } = useAuth();
   const [services, setServices] = useState([]);
@@ -27,13 +26,14 @@ const MyServices = () => {
   );
 
   useEffect(() => {
-    
-    axios.get(`https://service-review-system-server-beta.vercel.app/my-Services?email=${user.email}`)
-  .then((res) => setServices(res.data))
-  .catch((err) => {
-    console.error(err);
-  });
-    
+    axios
+      .get(
+        `https://service-review-system-server-beta.vercel.app/my-Services?email=${user.email}`
+      )
+      .then((res) => setServices(res.data))
+      .catch((err) => {
+        console.error(err);
+      });
   }, [user.email]);
 
   services;
