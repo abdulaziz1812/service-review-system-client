@@ -10,7 +10,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/services")
+      .get("https://service-review-system-server-beta.vercel.app/services")
       .then((res) => {
         setServices(res.data);
       })

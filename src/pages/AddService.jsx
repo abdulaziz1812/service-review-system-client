@@ -20,7 +20,10 @@ const AddService = () => {
     const service = { ...initialData, email: email, addedDate: date };
 
     axios
-      .post("http://localhost:5000/services", service)
+      .post(
+        "https://service-review-system-server-beta.vercel.app/services",
+        service
+      )
       .then((result) => {
         result;
         if (result.data.insertedId) {

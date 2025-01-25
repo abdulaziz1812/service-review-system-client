@@ -33,24 +33,32 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      (currentUser?.email);
+      currentUser?.email;
       if (currentUser?.email) {
         const user = { email: currentUser.email };
 
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post(
+            "https://service-review-system-server-beta.vercel.app/jwt",
+            user,
+            { withCredentials: true }
+          )
           .then((res) => {
-            (res.data)
-            setLoading(false)
-          })
+            res.data;
+            setLoading(false);
+          });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post(
+            "https://service-review-system-server-beta.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          )
 
           .then((res) => {
-            ("logout", res.data)
-              setLoading(false)
-            })
+            "logout", res.data;
+            setLoading(false);
+          });
       }
     });
 

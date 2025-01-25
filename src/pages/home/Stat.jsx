@@ -7,7 +7,9 @@ const Stat = () => {
 
   useEffect(() => {
     const fetchCounts = async () => {
-      const response = await fetch("http://localhost:5000/counts");
+      const response = await fetch(
+        "https://service-review-system-server-beta.vercel.app/counts"
+      );
       const data = await response.json();
       setCounts(data);
     };

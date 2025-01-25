@@ -22,7 +22,9 @@ const ServiceDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/review-details/${service._id}`)
+      .get(
+        `https://service-review-system-server-beta.vercel.app/review-details/${service._id}`
+      )
       .then((res) => {
         setReviews(res.data || []);
       })
@@ -53,7 +55,10 @@ const ServiceDetails = () => {
     };
 
     axios
-      .post("http://localhost:5000/review", newReview)
+      .post(
+        "https://service-review-system-server-beta.vercel.app/review",
+        newReview
+      )
       .then((result) => {
         result;
         if (result.data.insertedId) {

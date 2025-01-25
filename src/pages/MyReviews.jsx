@@ -13,7 +13,9 @@ const MyReviews = () => {
 
   selectedReview.rating;
   useEffect(() => {
-    fetch(`http://localhost:5000/my-reviews?email=${user.email}`)
+    fetch(
+      `https://service-review-system-server-beta.vercel.app/my-reviews?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.error(err.message));
@@ -33,7 +35,9 @@ const MyReviews = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/reviews/${id}`)
+          .delete(
+            `https://service-review-system-server-beta.vercel.app/reviews/${id}`
+          )
           .then(() => {
             setReviews(reviews.filter((review) => review._id !== id));
             Swal.fire("Deleted!", "Your review has been deleted.", "success");
@@ -65,13 +69,16 @@ const MyReviews = () => {
       rating: rating,
     };
 
-    fetch(`http://localhost:5000/reviews/${selectedReview._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedReview),
-    })
+    fetch(
+      `https://service-review-system-server-beta.vercel.app/reviews/${selectedReview._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

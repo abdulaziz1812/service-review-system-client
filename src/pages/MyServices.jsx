@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+
 
 const MyServices = () => {
   const { user } = useAuth();
@@ -11,7 +11,7 @@ const MyServices = () => {
   const [selectedService, setSelectedService] = useState({});
   const [search, setSearch] = useState("");
 
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
 
   const handelSearch = (e) => {
     e.preventDefault();
@@ -27,10 +27,14 @@ const MyServices = () => {
   );
 
   useEffect(() => {
-    axiosSecure
-      .get(`/my-Services?email=${user.email}`)
-      .then((res) => setServices(res.data));
-  }, [user.email, axiosSecure]);
+    
+    axios.get(`https://service-review-system-server-beta.vercel.app/my-Services?email=${user.email}`)
+  .then((res) => setServices(res.data))
+  .catch((err) => {
+    console.error(err);
+  });
+    
+  }, [user.email]);
 
   services;
 
@@ -57,13 +61,17 @@ const MyServices = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/services/${id}`).then(() => {
-          const remainingServices = services.filter(
-            (service) => service._id !== id
-          );
-          remainingServices;
-          setServices(remainingServices);
-        });
+        axios
+          .delete(
+            `https://service-review-system-server-beta.vercel.app/services/${id}`
+          )
+          .then(() => {
+            const remainingServices = services.filter(
+              (service) => service._id !== id
+            );
+            remainingServices;
+            setServices(remainingServices);
+          });
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -96,13 +104,16 @@ const MyServices = () => {
       email: email,
     };
 
-    fetch(`http://localhost:5000/services/${selectedService._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedService),
-    })
+    fetch(
+      `https://service-review-system-server-beta.vercel.app/services/${selectedService._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedService),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

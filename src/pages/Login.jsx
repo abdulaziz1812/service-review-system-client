@@ -42,7 +42,11 @@ const Login = () => {
         const users = { email: result.user.email };
         user;
         axios
-          .post("http://localhost:5000/jwt", users, { withCredentials: true })
+          .post(
+            "https://service-review-system-server-beta.vercel.app/jwt",
+            users,
+            { withCredentials: true }
+          )
           .then((res) => {
             res.data;
           });

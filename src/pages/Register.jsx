@@ -55,7 +55,10 @@ const Register = () => {
         setUser(user);
         if (result.user.uid) {
           axios
-            .post("http://localhost:5000/user", user)
+            .post(
+              "https://service-review-system-server-beta.vercel.app/user",
+              user
+            )
             .then((result) => {
               result;
             })
