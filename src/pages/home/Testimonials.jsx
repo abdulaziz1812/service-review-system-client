@@ -35,7 +35,7 @@ const Testimonials = () => {
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={index}
-            className="bg-white shadow-lg p-6 rounded-lg text-center"
+            className="bg-white shadow-lg p-6 rounded-lg text-center hover:shadow-2xl"
             initial={{ opacity: 0 , x:50}}
             whileInView={{ opacity: 1,x:0 }}
             transition={{ duration: 0.5, delay: index * 0.3 }}

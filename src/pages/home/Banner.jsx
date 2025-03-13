@@ -75,7 +75,7 @@ const Banner = () => {
                   </motion.h2>
                   <motion.p 
                   {...animationP}
-                  className=" md:text-xl text-white">
+                  className="text-sm md:text-xl text-white">
                     Your trusted platform for authentic reviews
                   </motion.p>
                 </div>
@@ -105,7 +105,7 @@ const Banner = () => {
                 </motion.h2>
                 <motion.p
                   {...animationP}
-                  className=" md:text-xl text-white"
+                  className="text-sm md:text-xl text-white"
                 >
                   Help others by providing insightful reviews
                 </motion.p>

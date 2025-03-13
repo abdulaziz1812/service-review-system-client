@@ -32,6 +32,7 @@ const AddService = () => {
             icon: "success",
             draggable: true,
           });
+          
         }
       })
       .catch((error) => {
@@ -39,6 +40,11 @@ const AddService = () => {
       });
 
     e.target.reset();
+  };
+
+  const handleClear = (e) => {
+    e.preventDefault(); // Prevent form submission
+    e.target.form.reset(); // Reset the form
   };
 
   return (
@@ -145,14 +151,17 @@ const AddService = () => {
           <textarea
             type="text"
             placeholder="Description"
-            className="input input-bordered"
+            className="input input-bordered h-24"
             name="description"
             required
           ></textarea>
         </div>
-        <div className="form-control mt-6">
-          <button className="btn btn-primary text-white" type="submit">
+        <div className="mt-6 flex gap-4 w-fit">
+          <button className="btn btn-accent " type="submit">
             Add Service
+          </button>
+          <button className="btn btn-outline" type="button" onClick={handleClear}>
+            Clear Form
           </button>
         </div>
       </form>

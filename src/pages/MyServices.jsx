@@ -214,7 +214,7 @@ const MyServices = () => {
                 ))
               ) : (
                 <tr>
-                  <td className="col-span-full text-center text-xl text-gray-500">
+                  <td colSpan="7" className=" text-center text-xl text-gray-500">
                     No Services found.
                   </td>
                 </tr>

@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
-      <footer className="footer  text-base-content p-10 ">
+      <footer className="footer text-base-content p-4">
         <aside className="">
-          <img src={logo} alt="" />
+          <img 
+          className="w-12"
+          src={logo} alt="" />
           <p>
             <strong>Review Radar Ltd.</strong>
             <br />
             Your go-to platform for discovering
-            <br />
+            
             and sharing authentic service reviews.
             <br />
             Connect, explore, and share experiences with confidence.
@@ -33,7 +35,7 @@ const Footer = () => {
             </Link>
           </div>
         </aside>
-        <nav className="flex flex-col items-center pt-4">
+        <nav className="flex flex-col  justify-center items-center pt-4">
           <h6 className="footer-title">Links</h6>
           <div className="flex gap-4">
             <Link className="link link-hover" to="services">
@@ -45,9 +47,9 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
-      <div className="divider "></div>
+      <div className="divider m-0"></div>
       <div>
-        <h3 className="text-center py-6">
+        <h3 className="text-center pb-2">
           © 2025 Review Radar. All rights reserved.
         </h3>
       </div>

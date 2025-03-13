@@ -26,7 +26,7 @@ const Stat = () => {
         return { opacity: 1, x: 0 }}}
       transition={{ duration: 0.5, delay: 0.2 }}
       viewport={{ once: true }}
-      className="flex justify-center items-center mx-auto w-fit p-8 bg-white rounded-xl shadow-xl mb-8"
+      className="flex justify-center items-center mx-auto w-fit p-8 bg-white rounded-xl shadow-xl mb-8 hover:shadow-2xl"
     >
       <div className="stats shadow">
         <div className="stat place-items-center">

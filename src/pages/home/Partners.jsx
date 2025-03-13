@@ -24,7 +24,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section className="py-16 px-5 bg-base-100 w-10/12 mx-auto max-w-screen-xl">
+    <section className="pb-6 md:py-16 md:px-5 bg-base-100 w-10/12 mx-auto max-w-screen-xl">
       <h2 className="text-3xl font-bold text-center mb-10">
         Meet Our Partners
       </h2>
@@ -32,7 +32,7 @@ const Partners = () => {
         {partners.map((partner, index) => (
           <motion.div
             key={index}
-            className="bg-white shadow-lg p-6 rounded-lg text-center"
+            className="bg-white shadow-lg p-6 rounded-lg text-center hover:shadow-2xl"
             initial={{ opacity: 0, x:50 }}
             whileInView={{ opacity: 1, x:0  }}
             transition={{ duration: 0.5, delay: index * 0.3 }}

@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ServiceCard from "./shared/ServiceCard";
 import { Helmet } from "react-helmet-async";
+import { motion } from "motion/react";
+import loadingLottieData from "../assets/lottie/Loading.json";
+import Lottie from "lottie-react";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -20,7 +23,9 @@ const Services = () => {
   }, []);
 
   if (!services.length) {
-    return <div className="text-center py-8">Loading services...</div>;
+    return <div className="flex items-center justify-center h-screen">
+    <Lottie animationData={loadingLottieData} className="w-60 "></Lottie>
+  </div>
   }
 
   const handelSearch = (e) => {
@@ -42,7 +47,7 @@ const Services = () => {
         <title>Services-ReviewRadar</title>
       </Helmet>
       ;
-      <div className="container mx-auto py-8 w-10/12 xl:w-8/12">
+      <div className="container min-h-s mx-auto py-8 w-10/12 xl:w-8/12">
         <h2 className="text-3xl font-bold text-center mb-6">All Services</h2>
 
         <div className="">
@@ -80,8 +85,16 @@ const Services = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredService.length > 0 ? (
-            filteredService.map((service) => (
-              <ServiceCard service={service} key={service._id}></ServiceCard>
+            filteredService.map((service, index) => (
+              <motion.div 
+              key={service._id}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            viewport={{once: true}}
+              key={service._id}>
+                <ServiceCard service={service} ></ServiceCard>
+              </motion.div>
             ))
           ) : (
             <p className="col-span-full text-center text-xl text-gray-500">
