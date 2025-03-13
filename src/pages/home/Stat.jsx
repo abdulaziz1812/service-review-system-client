@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 
 const Stat = () => {
   const [counts, setCounts] = useState({});
+  const [startCount, setStartCount] = useState(false)
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -16,30 +17,34 @@ const Stat = () => {
     fetchCounts();
   }, []);
 
+      
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      whileInView={() => {
+        setStartCount(true); 
+        return { opacity: 1, x: 0 }}}
       transition={{ duration: 0.5, delay: 0.2 }}
+      viewport={{ once: true }}
       className="flex justify-center items-center mx-auto w-fit p-8 bg-white rounded-xl shadow-xl mb-8"
     >
       <div className="stats shadow">
         <div className="stat place-items-center">
           <div className="stat-title">Users</div>
           <div className="stat-value">
-            <CountUp end={counts.userCount || 0} duration={2} />
+            <CountUp end={counts.userCount || 0} start={startCount ? 0 : undefined} duration={5} />
           </div>
         </div>
         <div className="stat place-items-center">
           <div className="stat-title">Reviews</div>
           <div className="stat-value">
-            <CountUp end={counts.reviewCount || 0} duration={2} />
+            <CountUp end={counts.reviewCount || 0} start={startCount ? 0 : undefined} duration={5} />
           </div>
         </div>
         <div className="stat place-items-center">
           <div className="stat-title">Services</div>
           <div className="stat-value">
-            <CountUp end={counts.serviceCount || 0} duration={3} />
+            <CountUp end={counts.serviceCount || 0} start={startCount ? 0 : undefined} duration={4} />
           </div>
         </div>
       </div>

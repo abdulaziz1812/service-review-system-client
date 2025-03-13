@@ -137,7 +137,7 @@ const MyServices = () => {
   };
 
   return (
-    <div className="mx-auto w-11/12 mt-8">
+    <div className="mx-auto w-11/12 mt-8 min-h-screen">
       <Helmet>
         <title>MyServices-ReviewRadar</title>
       </Helmet>

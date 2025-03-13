@@ -5,7 +5,7 @@ import Footer from "../pages/shared/Footer";
 
 const MainLayout = () => {
     return (
-        <div >
+        <div className="min-h-screen">
             <div className="bg-teal-400/85 sticky backdrop-blur top-0 z-10 "> 
             <Navbar  ></Navbar>
             </div>

@@ -33,27 +33,16 @@ const Footer = () => {
             </Link>
           </div>
         </aside>
-        <nav>
+        <nav className="flex flex-col items-center pt-4">
           <h6 className="footer-title">Links</h6>
-          <Link className="link link-hover" to="services">
-            Services
-          </Link>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <div className="flex gap-4">
+            <Link className="link link-hover" to="services">
+              Services
+            </Link>
+            <Link className="link link-hover" to="add-service">Add Service</Link>
+            <Link className="link link-hover" to="my-reviews">My Reviews</Link>
+            <Link className="link link-hover" to="my-services">My Service</Link>
+          </div>
         </nav>
       </footer>
       <div className="divider "></div>

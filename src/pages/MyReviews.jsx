@@ -102,7 +102,7 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto mt-8">
+    <div className="w-10/12 mx-auto min-h-screen mt-8">
       <Helmet>
         <title>MyReviews-ReviewRadar</title>
       </Helmet>
