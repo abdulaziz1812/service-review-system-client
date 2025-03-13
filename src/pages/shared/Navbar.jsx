@@ -92,18 +92,18 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <button onClick={logout} className="btn btn-sm ">
+              <button onClick={logout} className="btn btn-sm btn-accent">
                 Log Out
               </button>
             </div>
           ) : (
             <div className="flex items-center gap-2">
               <Link to="/login">
-                <button className="btn btn-sm ">Login</button>
+                <button className="btn btn-sm btn-accent">Login</button>
               </Link>
               <div>or</div>
               <Link to="/register">
-                <button className="btn btn-sm ">Register</button>
+                <button className="btn btn-sm btn-accent ">Register</button>
               </Link>
             </div>
           )}

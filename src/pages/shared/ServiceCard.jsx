@@ -15,6 +15,7 @@ const ServiceCard = ({ service }) => {
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
+      viewport={{once: true}}
       className="w-full"
     >
       <motion.div
@@ -35,7 +36,7 @@ const ServiceCard = ({ service }) => {
           <p className="text-lg font-bold">Price: ${service.price}</p>
           <div className="card-actions flex justify-end ">
             <button
-              className="btn btn-primary text-white"
+              className="btn btn-accent"
               onClick={() => handelDetails(service._id)}
             >
               See Details

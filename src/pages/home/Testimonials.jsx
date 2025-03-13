@@ -27,7 +27,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-16 px-5 bg-base-100 w-10/12 mx-auto">
+    <section className="py-16 px-5 bg-base-100 w-10/12 mx-auto max-w-screen-xl">
       <h2 className="text-3xl font-bold text-center mb-10">
         What Users Say About Us
       </h2>
@@ -36,9 +36,10 @@ const Testimonials = () => {
           <motion.div
             key={index}
             className="bg-white shadow-lg p-6 rounded-lg text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.4 }}
+            initial={{ opacity: 0 , x:-50}}
+            whileInView={{ opacity: 1,x:0 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+            viewport={{once: true}}
           >
             <img
               src={testimonial.avatar}

@@ -24,7 +24,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section className="py-16 px-5 bg-base-100 w-10/12 mx-auto">
+    <section className="py-16 px-5 bg-base-100 w-10/12 mx-auto max-w-screen-xl">
       <h2 className="text-3xl font-bold text-center mb-10">
         Meet Our Partners
       </h2>
@@ -35,7 +35,8 @@ const Partners = () => {
             className="bg-white shadow-lg p-6 rounded-lg text-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.4 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+            viewport={{once: true}}
           >
             <img
               src={partner.logo}
