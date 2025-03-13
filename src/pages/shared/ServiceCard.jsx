@@ -15,24 +15,25 @@ const ServiceCard = ({ service }) => {
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
+      className="w-full"
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
-        className=" w-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg"
+        className=" h-full  bg-[#2dd4bf] shadow-lg hover:shadow-xl p-6 rounded-lg"
       >
-        <div className="flex flex-col flex-grow justify-between h-60">
+        <div className="flex flex-col  justify-between h-60">
           <figure>
             <img
               src={service.serviceImage}
               alt={service.serviceTitle}
-              className="rounded-lg w-20 h-20"
+              className="rounded-lg w-20 h-20 object-cover"
             />
           </figure>
-          <h3 className="font-bold">{service.serviceTitle}</h3>
-          <p>{service.description}</p>
-          <p>{service.category}</p>
+          <h3 className="font-bold text-lg">{service.serviceTitle}</h3>
+          <p className="text-sm text-gray-700">{service.description}</p>
+          <p className="text-sm italic">{service.category}</p>
           <p className="text-lg font-bold">Price: ${service.price}</p>
-          <div className="card-actions justify-end">
+          <div className="card-actions flex justify-end ">
             <button
               className="btn btn-primary text-white"
               onClick={() => handelDetails(service._id)}
